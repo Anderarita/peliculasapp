@@ -1,13 +1,14 @@
 import {Text, View} from 'react-native';
 import { useMovie } from '../../hooks/useMovie';
+import { PosterCarousel } from '../../components/movies/PosterCarousel';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const HomeScreen = () => {
   const {nowPlaying, popular} = useMovie();
-
-  console.log(popular[1])
+  const {top} = useSafeAreaInsets();
   return (
-    <View>
-      <Text style={{color: 'black'}}>HomeScreen</Text>
+    <View style={{marginTop: top + 20, paddingBottom:30}}>
+      <PosterCarousel movies={nowPlaying}/>
     </View>
   );
 };
