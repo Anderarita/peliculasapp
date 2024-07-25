@@ -6,15 +6,15 @@ import {ScrollView} from 'react-native-gesture-handler';
 import { HorizontalCarousel } from '../../components/movies/HorizontalCarousel';
 
 export const HomeScreen = () => {
-  const {nowPlaying, popular, topRated, upcoming, popularNextPage} = useMovie();
+  const {nowPlaying, popular, topRated, upcoming, popularNextPage, topRatedNextPage, upcomingNextPage} = useMovie();
   const {top} = useSafeAreaInsets();
   return (
     <ScrollView>
       <View style={{marginTop: top + 20, paddingBottom: 30}}>
         <PosterCarousel movies={nowPlaying} />
         <HorizontalCarousel movies={popular} title='Populares' loadNextPage={popularNextPage}/>
-        <HorizontalCarousel movies={topRated} title='Mejores Calificadas'/>
-        <HorizontalCarousel movies={upcoming} title='Proximamente'/>
+        <HorizontalCarousel movies={topRated} title='Mejores Calificadas' loadNextPage={topRatedNextPage}/>
+        <HorizontalCarousel movies={upcoming} title='Proximamente'loadNextPage={upcomingNextPage}/>
       </View>
     </ScrollView>
   );
