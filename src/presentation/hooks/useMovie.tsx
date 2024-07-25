@@ -10,6 +10,8 @@ export const useMovie = () => {
     const [upcoming, setUpcoming] = useState<Movie[]>();
     const [isLoading, setIsLoading] = useState(true);
 
+    let popularPageNumber = 1;
+
     useEffect(()=>{
         initialLoad();
     },[]);
@@ -41,7 +43,12 @@ export const useMovie = () => {
         upcoming,
         isLoading,
         //Methodos
-        setIsLoading
+        setIsLoading,
+        popularNextPage: async () => {
+            popularPageNumber++;
+            const popularMovies = await UseCases.moviesPopularUseCase(movieDBFetcher, {page: popularPageNumber});
+            setPopular(prev => [...prev!, ...popularMovies]);
+        }
         
     };
 }
